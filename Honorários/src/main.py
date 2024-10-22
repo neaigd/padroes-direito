@@ -1,8 +1,9 @@
 import pdfplumber
 import json
+import os  # Importar o módulo os
 
 # Path to the uploaded file
-pdf_file_path = 'extraidos/tabela_site_10_2024.json'
+pdf_file_path = '/media/peixoto/stuff/padroes-direito/Honorários/tabelas/tabela_site_10_2024.pdf'
 
 # Initialize a list to store the extracted data
 data = []
@@ -40,7 +41,10 @@ with pdfplumber.open(pdf_file_path) as pdf:
 output_json = json.dumps(data, indent=4, ensure_ascii=False)
 
 # Path to save the JSON output
-output_json_path = 'extraidos/tabela_site_10_2024.json'
+output_json_path = '/media/peixoto/stuff/padroes-direito/Honorários/extraidos/tabela.json'
+
+# Ensure the output directory exists
+os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
 
 # Save the JSON data to a file
 with open(output_json_path, 'w', encoding='utf-8') as f:
